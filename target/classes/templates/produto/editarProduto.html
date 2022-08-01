@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	th:href="@{/materialize/css/materialize.min.css}" media="screen,projection" />
+
+<link rel="stylesheet" th:href="@{/style/Style.css}"/>
+
+<title>Controle de Estoque</title>
+
+</head>
+<body>
+	<header>
+		<nav class="menu">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Editar Produtos:</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/produtos" class="waves-effect waves-light btn"><i
+							class="material-icons left">format_list_bulleted</i>Lista de
+							produtos</a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</header>
+	<div class="container formProduto">
+	
+		<form class="container" action="/cadastrarProduto" th:object="${produto}" method="post">
+			<input type="hidden" th:value="${produto.codigo}" name="codigo"/>
+			Produto: <input type="text" value="" name="nome" th:value="${produto.nome}"/>
+			<div class="row">
+				<div class="imput-field col s6">
+					Setor: <input type="text" value="" name="setor" th:value="${produto.setor}"/>
+				</div>
+				<div class="imput-field col s6">
+					Quantidade: <input type="text" value="" name="quantidade" th:value="${produto.quantidade}"/>
+				</div>
+			</div>
+			<button  class="waves-effect waves-light btn" type="submit">Salvar</button>
+		</form>
+	</div>
+	
+	<th:block  th:include="mensagemValidacao"></th:block>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+	
+</body>
+
+</html>

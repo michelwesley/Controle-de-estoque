@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Controle de Estoque</title>
+	 <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="style/Style.css"/>
+</head>
+<body>
+	
+	<header>
+		<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Lista de Produtos</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/cadastrarProduto" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar produto</a></li>
+		      </ul>
+		    </div>
+		</nav>
+	
+	</header>
+	<table class="container">
+		<thead>
+			<tr>
+				<th>Produto</th>
+				<th>Setor</th>
+				<th>quantidade</th>
+				<th>editar</th>
+				<th>Apagar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="produto : ${produtos}">
+				<td><a th:href="${(#mvc.url('PC#detalhesProduto').arg(0, produto.codigo)).build()}"><span th:text="${produto.nome}"></span></a></td>
+				<td><span th:text="${produto.setor}"></span></td>
+				<td><span th:text="${produto.quantidade}"></span></td>
+				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('PC#editarProduto').arg(0, produto.codigo)).build()}"><i class="material-icons left">edit</i></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('PC#deletarProduto').arg(0, produto.codigo)).build()}"><i class="material-icons left">delete</i></a></td>
+				
+			</tr>
+		</tbody>
+	</table>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>
